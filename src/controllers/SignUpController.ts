@@ -1,10 +1,9 @@
 import { SignUpPrismaRepository } from "../repositories/prisma/signUpPrismaRepository";
-import { ISignUpRepository } from "../repositories/signUpRepository";
 import { SignUpUseCases } from "../useCases/SignUpUseCases";
 
 class SignUpController {
   private readonly signUpRepository;
-  private signUpUseCases: ISignUpRepository;
+  private signUpUseCases: SignUpUseCases;
 
   constructor() {
     this.signUpRepository = new SignUpPrismaRepository();
