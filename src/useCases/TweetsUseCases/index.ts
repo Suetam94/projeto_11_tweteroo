@@ -19,4 +19,8 @@ export class TweetsUseCases {
 
     return this.tweetRepository.create({ username, tweetContent: tweet });
   }
+
+  list() {
+    return this.tweetRepository.list();
+  }
 }

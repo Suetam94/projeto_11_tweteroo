@@ -12,4 +12,12 @@ export class TweetPrismaRepository implements ITweetRepository {
       },
     });
   }
+
+  async list(): Promise<Tweet[]> {
+    return prisma.tweet.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+  }
 }

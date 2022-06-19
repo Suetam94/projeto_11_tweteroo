@@ -25,8 +25,14 @@ class TweetsController {
     }
   }
 
-  list(req, res, next) {
-    return res.send("chegou nos tweets listar");
+  async list(req, res, next) {
+    try {
+      const tweets = await this.tweetsUseCases.list();
+
+      return res.status(200).json(tweets).send();
+    } catch (e) {
+      return next(e);
+    }
   }
 }
 

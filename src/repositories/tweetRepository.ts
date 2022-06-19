@@ -7,4 +7,5 @@ export interface ITweetCreateData {
 
 export class ITweetRepository {
   create: (data: ITweetCreateData) => Promise<Tweet>;
+  list: () => Promise<Tweet[]>;
 }
