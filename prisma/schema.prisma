@@ -12,7 +12,7 @@ model SignUp {
   username  String   @unique
   avatar    String
   createdAt DateTime @default(now())
-  tweets    Tweet?
+  tweets    Tweet[]
 }
 
 model Tweet {

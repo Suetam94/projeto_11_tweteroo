@@ -18,6 +18,9 @@ export class TweetPrismaRepository implements ITweetRepository {
       orderBy: {
         createdAt: "desc",
       },
+      include: {
+        user: true,
+      },
     });
   }
 }

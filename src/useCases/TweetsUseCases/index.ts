@@ -7,6 +7,20 @@ interface ITweetCreateDataUseCase {
   tweet: string;
 }
 
+interface ITweet {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  username: string;
+  tweetContent: string;
+  user: {
+    id: number;
+    username: string;
+    avatar: string;
+    createdAt: Date;
+  };
+}
+
 export class TweetsUseCases {
   constructor(private tweetRepository: TweetPrismaRepository) {}
   create({ username, tweet }: ITweetCreateDataUseCase): Promise<Tweet> {
@@ -20,7 +34,14 @@ export class TweetsUseCases {
     return this.tweetRepository.create({ username, tweetContent: tweet });
   }
 
-  list() {
-    return this.tweetRepository.list();
+  async list() {
+    const allTweets = (await this.tweetRepository.list()) as ITweet[];
+    return allTweets.map((content) => {
+      return {
+        username: content.username,
+        avatar: content.user.avatar,
+        tweet: content.tweetContent,
+      };
+    });
   }
 }
