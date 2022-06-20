@@ -5,7 +5,7 @@ import { tweetRoutes } from "./tweets.routes";
 
 const routes = Router();
 
-routes.use("/signup", signUpRoutes);
+routes.use("/sign-up", signUpRoutes);
 routes.use("/tweets", tweetRoutes);
 
 export default routes;
