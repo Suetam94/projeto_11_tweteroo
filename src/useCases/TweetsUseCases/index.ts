@@ -34,6 +34,14 @@ export class TweetsUseCases {
     return this.tweetRepository.create({ username, tweetContent: tweet });
   }
 
+  async getUserTweets(username: string) {
+    if (!username) {
+      throw new Error("Username is required");
+    }
+
+    return (await this.tweetRepository.getTweetsByUser(username)) as ITweet[];
+  }
+
   async list() {
     const allTweets = (await this.tweetRepository.list()) as ITweet[];
     return allTweets.map((content) => {

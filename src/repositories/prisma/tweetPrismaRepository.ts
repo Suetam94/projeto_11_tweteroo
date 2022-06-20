@@ -13,6 +13,20 @@ export class TweetPrismaRepository implements ITweetRepository {
     });
   }
 
+  async getTweetsByUser(username: string): Promise<Tweet[]> {
+    return prisma.tweet.findMany({
+      where: {
+        username,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+      include: {
+        user: true,
+      },
+    });
+  }
+
   async list(): Promise<Tweet[]> {
     return prisma.tweet.findMany({
       orderBy: {

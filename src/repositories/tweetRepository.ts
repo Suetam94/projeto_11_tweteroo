@@ -7,5 +7,6 @@ export interface ITweetCreateData {
 
 export class ITweetRepository {
   create: (data: ITweetCreateData) => Promise<Tweet>;
+  getTweetsByUser: (username: string) => Promise<Tweet[]>;
   list: () => Promise<Tweet[]>;
 }

@@ -9,6 +9,11 @@ const tweetsController = new TweetsController();
 tweetRoutes.post("/", (req, res, next) =>
   tweetsController.create(req, res, next)
 );
+
+tweetRoutes.get("/:USERNAME", (req, res, next) =>
+  tweetsController.getUserTweets(req, res, next)
+);
+
 tweetRoutes.get("/", (req, res, next) => tweetsController.list(req, res, next));
 
 export { tweetRoutes };

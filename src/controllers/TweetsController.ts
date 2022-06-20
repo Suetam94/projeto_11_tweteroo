@@ -25,6 +25,18 @@ class TweetsController {
     }
   }
 
+  async getUserTweets(req, res, next) {
+    const { USERNAME } = req.params;
+
+    try {
+      const userTweets = await this.tweetsUseCases.getUserTweets(USERNAME);
+
+      return res.status(200).json(userTweets).send();
+    } catch (e) {
+      return next(e);
+    }
+  }
+
   async list(req, res, next) {
     try {
       const tweets = await this.tweetsUseCases.list();
